@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tweet App</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto max-w-lg p-4">
+    <h1 class="text-3xl font-bold text-center mb-4 text-white-500">Tweet App</h1>
+    <form class="flex items-center mb-4" action="/api/tweet" method="post">
+      <input class="flex-grow px-4 py-2 border rounded-lg mr-2 focus:outline-none focus:ring focus:border-blue-300" type="text" name="text" placeholder="Inserisci un tweet (max 150 caratteri)">
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:bg-blue-600" type="submit">Invia</button>
+    </form>
+
+    <h2 class="text-xl font-bold mb-2 text-gray-700">Lista tweet:</h2>
+    <ul>
+      <% tweets.forEach((tweet) => { %>
+      <li class="border-b py-2">
+        <%= replaceHashtagsWithLinks(tweet.text) %> - <%= tweet.date %>
+        <form class="flex items-center mt-2" action="/api/tweet" method="post">
+          <input class="flex-grow px-4 py-2 border rounded-lg mr-2 focus:outline-none focus:ring focus:border-blue-300" type="text" name="text" value="<%= tweet.text %>">
+          <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:bg-blue-600" type="submit">Salva</button>
+        </form>
+        <form action="/api/delete/<%= tweet.date %>" method="post">
+          <button class="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring focus:bg-red-600" type="submit">Delete</button>
+        </form>
+      </li>
+      <% }) %>
+    </ul>
+
+    <h2 class="text-xl font-bold mt-4 mb-2 text-gray-700">Ricerca per hashtag:</h2>
+    <form class="flex items-center mb-4" action="/api/tweet" method="get">
+      <input class="flex-grow px-4 py-2 border rounded-lg mr-2 focus:outline-none focus:ring focus:border-blue-300" type="text" name="hashtag" placeholder="Inserisci un hashtag">
+      <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:bg-blue-600" type="submit">Cerca per hashtag</button>
+    </form>
+
+    <h2 class="text-xl font-bold mb-2 text-gray-700">Ricerca tweet:</h2>
+    <form class="flex items-center" action="/api/tweets" method="get">
+      <input class="flex-grow px-4 py-2 border rounded-lg mr-2 focus:outline-none focus:ring focus:border-green-300" type="text" name="search" placeholder="Cerca tweet">
+      <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 focus:outline-none focus:ring focus:bg-green-600" type="submit">Cerca tweet</button>
+    </form>
+  </div>
+</body>
+</html>

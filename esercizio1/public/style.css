@@ -1,0 +1,80 @@
+/* Resetta i margini e i padding predefiniti */
+body, h1, h2, ul, li, form {
+  margin: 0;
+  padding: 0;
+}
+
+/* Stile per l'header h1 */
+h1 {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Stile per il form di inserimento tweet */
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Stile per la lista di tweet */
+ul {
+  list-style: none;
+}
+
+li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Stile per i link degli hashtag */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* Stile per il form di modifica tweet */
+li form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+li input[type="text"] {
+  width: 300px;
+}
+
+/* Stile per i form di ricerca */
+h2 {
+  margin-top: 20px;
+}
+
+form[action="/api/tweet"] button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+form[action="/api/tweets"] button {
+  background-color: #28a745;
+}
